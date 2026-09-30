@@ -173,3 +173,50 @@ Buổi học diễn ra từ **14:15 đến 18:00**. Hoàn thành bài lab trư�
 
 Chi tiết tiêu chí chấm điểm, bằng chứng và các trường hợp trừ điểm xem tại [RUBRIC.md](RUBRIC.md).  
 Hướng dẫn nộp bài và checklist trước khi nộp xem tại [SUBMISSION.md](SUBMISSION.md).
+
+---
+
+## Presentation Demo
+
+Demo trình bày Day 14 nằm trong `demo/app.py`. Ứng dụng là một dashboard
+Streamlit đọc dữ liệu thật trong repo và trình bày pipeline:
+
+```text
+Golden Dataset -> Run AI -> Measure -> Find Failure -> Find Root Cause -> Fix -> Benchmark Again -> Regression Gate
+```
+
+Chạy demo từ root repository:
+
+```bash
+python -m pip install -r requirements.txt
+python -m streamlit run demo/app.py
+```
+
+Demo đọc các artifact sau nếu đã tồn tại:
+
+- `golden_dataset.json`
+- `artifacts/actual_answers.json`
+- `artifacts/benchmark_results.json`
+- `reflection.md`
+
+Nếu benchmark artifact chưa được tạo, UI sẽ hiển thị rõ trạng thái thiếu dữ liệu
+và không tự tạo điểm giả. Để tạo artifact theo workflow bài lab:
+
+```bash
+python domain_assistant.py
+python evaluate_answers.py
+```
+
+`domain_assistant.py` cần `OPENAI_API_KEY` và `OPENAI_MODEL` trong `.env`.
+Trong demo có nút optional để chạy live đúng một selected case khi API key tồn tại.
+
+Ví dụ `.env`:
+
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_MODEL=gpt-4o-mini
+# Optional nếu dùng OpenAI-compatible gateway:
+OPENAI_BASE_URL=https://api.openai.com/v1
+```
+
+Sau khi đổi `.env`, restart Streamlit để app đọc lại cấu hình.

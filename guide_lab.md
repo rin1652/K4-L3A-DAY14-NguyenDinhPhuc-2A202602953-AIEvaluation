@@ -573,6 +573,8 @@ Mở `.env` và điền:
 ```dotenv
 OPENAI_API_KEY=<API_KEY_CUA_BAN>
 OPENAI_MODEL=gpt-4o-mini
+# Optional nếu dùng OpenAI-compatible gateway:
+OPENAI_BASE_URL=https://api.openai.com/v1
 ```
 
 `.env` đã nằm trong `.gitignore`. Không paste key vào source code, notebook,
